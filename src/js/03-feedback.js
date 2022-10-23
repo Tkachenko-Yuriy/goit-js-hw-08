@@ -8,6 +8,7 @@ let formdata = {};
 loadFormInput();
 
 formEl.addEventListener('input', _throttle(onFormInput, 500));
+
 formEl.addEventListener('submit', onFormSubmit);
 
 function onFormInput(e) {
@@ -20,6 +21,11 @@ function onFormInput(e) {
 
 function onFormSubmit(e) {
   e.preventDefault();
+  if (e.target.email.value === '' || e.target.message.value === '') {
+    alert('Enter all data');
+    return;
+  }
+
   e.target.reset();
   console.log(formdata);
   localStorage.removeItem(STORAGE_KEY);
